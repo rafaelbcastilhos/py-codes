@@ -1,20 +1,18 @@
 class Prefixa_Visitor(object):
 
     def visita_soma(self, soma):
-
-        print '+',
-        print '(',
+        print('+')
+        print('(')
         soma.expressao_esquerda.aceita(self)
         soma.expressao_direita.aceita(self)
-        print ')',
+        print (')')
 
     def visita_subtracao(self, subtracao):
-        print '-',
-        print '(',
+        print('-')
+        print('('),
         subtracao.expressao_esquerda.aceita(self)
         subtracao.expressao_direita.aceita(self)
-        print ')',
+        print(')')
 
     def visita_numero(self, numero):
-
-        print numero.avalia(),
+        print(numero.avalia())

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-
-# -*- coding: utf-8 -*-
 from datetime import date
+
+
 class Contrato(object):
 
     def __init__(self, data, cliente, tipo):
@@ -38,13 +38,14 @@ class Contrato(object):
             self.__tipo = 'EM ANDAMENTO'
         elif self.__tipo == 'EM ANDAMENTO':
             self.__tipo = 'ACERTADO'
-        elif self.__tipo == 'ACERTADO': 
+        elif self.__tipo == 'ACERTADO':
             self.__tipo = 'CONCLUIDO'
 
     def salva_estado(self):
-        return Estado(Contrato(data=self.__data, 
-            cliente=self.__cliente, 
-            tipo=self.__tipo))
+        return Estado(Contrato(data=self.__data,
+                               cliente=self.__cliente,
+                               tipo=self.__tipo))
+
 
 class Estado(object):
 
@@ -54,6 +55,7 @@ class Estado(object):
     @property
     def contrato(self):
         return self.__contrato
+
 
 class Historico(object):
 
@@ -66,31 +68,31 @@ class Historico(object):
     def adiciona_estado(self, estado):
         self.__estados_salvos.append(estado)
 
-if __name__ == '__main__':
 
+if __name__ == '__main__':
     historico = Historico()
 
     contrato = Contrato(data=date.today(),
-        cliente='Flávio Almeida', tipo='NOVO')
+                        cliente='Rafael', tipo='NOVO')
 
-    print contrato.tipo
-    print contrato.cliente
+    print(contrato.tipo)
+    print(contrato.cliente)
 
     contrato.avanca()
     historico.adiciona_estado(contrato.salva_estado())
 
-    print contrato.tipo
-    print contrato.cliente
-    
+    print(contrato.tipo)
+    print(contrato.cliente)
+
     contrato.avanca()
     historico.adiciona_estado(contrato.salva_estado())
 
-    print contrato.tipo
-    print contrato.cliente
+    print(contrato.tipo)
+    print(contrato.cliente)
 
     contrato.avanca()
 
-    print contrato.tipo
-    print contrato.cliente
-    
+    print(contrato.tipo)
+    print(contrato.cliente)
+
     historico.adiciona_estado(contrato.salva_estado())
