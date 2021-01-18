@@ -3,6 +3,7 @@
 from datetime import date
 from observadores import (envia_por_email, salva_no_banco, imprime)
 
+
 class Item(object):
 
     def __init__(self, descricao, valor):
@@ -16,6 +17,7 @@ class Item(object):
     @property
     def valor(self):
         return self.__valor
+
 
 class Nota_fiscal(object):
     def __init__(self, razao_social, cnpj, itens, data_de_emissao=date.today(), detalhes='', observadores=[]):
@@ -46,9 +48,9 @@ class Nota_fiscal(object):
     def detalhes(self):
         return self.__detalhes
 
-if __name__ == '__main__':
 
-    itens=[
+if __name__ == '__main__':
+    itens = [
         Item(
             descricao='ITEM A',
             valor=100
@@ -61,9 +63,8 @@ if __name__ == '__main__':
 
     nota_fiscal = Nota_fiscal(
         cnpj='012345678901234',
-        razao_social='FHSA Limitada',
+        razao_social='Empresa',
         itens=itens,
-        observadores=[envia_por_email, 
-            salva_no_banco, imprime]
+        observadores=[envia_por_email,
+                      salva_no_banco, imprime]
     )
-

@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 from exceptions import SaldoInsuficienteError, OperacaoFinanceiraError
+
+
 class Cliente:
     def __init__(self, nome, cpf, profissao):
         self.nome = nome
@@ -15,8 +17,8 @@ class ContaCorrente:
         self.__saldo = 100
         self.__agencia = 0
         self.__numero = 0
-        self.saques_nao_permitidos = 0 
-        self.transferencias_nao_permitidas = 0 
+        self.saques_nao_permitidos = 0
+        self.transferencias_nao_permitidas = 0
         self.cliente = cliente
         self.__set_agencia(agencia)
         self.__set_numero(numero)
@@ -32,9 +34,7 @@ class ContaCorrente:
             raise ValueError("O atributo agencia deve ser um inteiro", value)
         if value <= 0:
             raise ValueError("O atributo agencia deve ser maior que zero")
-            
         self.__agencia = value
-
 
     @property
     def numero(self):
@@ -47,16 +47,15 @@ class ContaCorrente:
             raise ValueError("O atributo número deve ser maior que zero")
         self.__numero = value
 
-
     @property
     def saldo(self):
         return self.__saldo
+
     @saldo.setter
     def saldo(self, value):
         if not isinstance(value, int):
             raise ValueError("O atributo saldo deve ser um inteiro")
         self.__saldo = value
-
 
     def transferir(self, valor, favorecido):
         if valor < 0:
@@ -68,13 +67,13 @@ class ContaCorrente:
             E.args = ()
             raise OperacaoFinanceiraError("Operação não finalizada")
         favorecido.depositar(valor)
-    
+
     def sacar(self, valor):
-        if valor<0:
+        if valor < 0:
             raise ValueError("O valor a ser sacado não pode ser menor que zero")
-        if(self.saldo < valor):
-            self.saques_nao_permitidos+=1
-            raise SaldoInsuficienteError("",saldo=self.saldo, valor=valor)
+        if self.saldo < valor:
+            self.saques_nao_permitidos += 1
+            raise SaldoInsuficienteError("", saldo=self.saldo, valor=valor)
         self.saldo -= valor
 
     def depositar(self, valor):
@@ -84,8 +83,8 @@ class ContaCorrente:
 def main():
     import sys
 
-    contas =[]
-    while(True):
+    contas = []
+    while True:
         try:
             nome = input("Nome do cliente: \n")
             agencia = input("Número da agência: \n")

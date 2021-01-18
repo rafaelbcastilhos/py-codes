@@ -2,10 +2,10 @@
 
 from datetime import date
 
+
 class Pedido(object):
 
     def __init__(self, cliente, valor):
-
         self.__cliente = cliente
         self.__valor = valor
         self.__status = 'NOVO'
@@ -34,6 +34,7 @@ class Pedido(object):
     def data_finalizacao(self):
         return self.__data_finalizacao
 
+
 class Fila_de_trabalho(object):
 
     def __init__(self):
@@ -48,13 +49,15 @@ class Fila_de_trabalho(object):
 
 
 from abc import ABCMeta, abstractmethod
-class Comando(object):
 
+
+class Comando(object):
     __metaclass__ = ABCMeta
 
     @abstractmethod
     def executa(self):
         pass
+
 
 class Conclui_pedido(Comando):
 
@@ -64,6 +67,7 @@ class Conclui_pedido(Comando):
     def executa(self):
         self.__pedido.finaliza()
 
+
 class Paga_pedido(Comando):
 
     def __init__(self, pedido):
@@ -72,10 +76,10 @@ class Paga_pedido(Comando):
     def executa(self):
         self.__pedido.paga()
 
-if __name__ == '__main__':
 
-    pedido1 = Pedido('Flávio', 150)
-    pedido2 = Pedido('Almeida', 250)
+if __name__ == '__main__':
+    pedido1 = Pedido('Rafael', 150)
+    pedido2 = Pedido('João', 250)
 
     fila_de_trabalho = Fila_de_trabalho()
     fila_de_trabalho.adiciona(Paga_pedido(pedido1))
